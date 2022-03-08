@@ -8,9 +8,11 @@ Git 指针与分支流概述下述功能
 # Git支持的项目管理操作
 |操作|Git 命令|Note|
 |----|----|----|
-|创建Git仓库|||
-|上传本地仓库至Git服务器|||
-|从服务器clone Git项目|||
+|创建Git仓库|git init||
+|提交文件|git add xxx<br>git commit xxx|
+|查看仓库状态、日志|git status<br>git log|
+|上传本地仓库至Git服务器|git push||
+|从服务器clone Git项目|git clone||
 |项目版本回退及切换|||
 |查看不同版本之间的差异||
 |分支创建|
