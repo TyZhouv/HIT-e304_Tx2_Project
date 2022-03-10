@@ -2,7 +2,7 @@
 
 [Git Tuturial](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/Git_Tuturial.md)  
 
-# Git File Sturct[I change word Structrue to Struct]
+# Git File Sturcture
 ```Python
 ~/304lab$ tree
 .
