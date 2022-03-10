@@ -38,8 +38,8 @@ Git 指针与分支流概述下述功能
 |操作|Git 命令|Note|
 |----|----|----|
 |查看所有分支和当前分支|git branch -a|当前分支前有*号|	
-|分支创建|git branch -b <new-branch-name>|如果仅创建不切换则去掉参数 -b<br>exp:git branch aaa|
-|分支切换|git checkout <branch name>|把分支从默认的master切换到aaa：<br>git checkout aaa|
+|分支创建|git checkout -b <new-branch-name>|= <br>git branch version2<br> git checkout version2|
+|分支切换|git checkout <branch name>|把分支从默认的master切换到version2：<br>git checkout version2|
 |分支合并|git merge <branch-name>|通过git checkout 切换到A分支，如果要合并A、B分支不同的内容：<br>git checkout A<git merge B>|
 |解决冲突|||
 |标签创建|git tag 1.0<br>git tag  aaa 1.1|可以通过标签检出、创建分支|
@@ -109,6 +109,31 @@ nvidia@nvidia-tian:~/HIT e304_Tx2_Project$ git status
 >8.
 
 ```
-## 5.2 git diff查看修改内容
+	
+## 5.2 git diff查看本地仓库与远程仓库的差异
+>查看本地仓库与远程仓库的差异
+Ubuntu Cmd Flow：   
+```python
+  git fetch origin
+  git diff --stat master origin/master
+  #git diff -- stat命令的功能是统计哪些文件发生了改变，有多少行产生了改动，并不会给出改动的具体内容。
+```
+output:  
+![gitdiff]()
 
 ## 5.3 版本回退
+>要实现的功能：新建了一个version_back.txt：This is Version1 , add后commit到仓库，形成版本。  
+>现在需要版本回退到没有这个txt文件的版本  
+
+Ubuntu Cmd Flow：   
+>git log --pretty=oneline  
+  
+![git log]()
+>git reset --hard 5eb8  
+  
+![backimg]()
+  
+
+	
+	
+	
