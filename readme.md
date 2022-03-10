@@ -1,6 +1,6 @@
 [MarkdownFile Edit Help](https://www.runoob.com/markdown/md-image.html)  
 
-[Git Tuturial](wait)  
+[Git Tuturial](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/Git_Tuturial.md)  
 
 # Git File Sturcture
 ```Python
