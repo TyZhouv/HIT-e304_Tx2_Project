@@ -12,16 +12,17 @@ Git：分布式版本管理和控制系统
 >2. 多人协作开发
 >3. 支持所有文本编辑文件的版本控制(C、C++、Matlab、Python..)
 
-# 1 Git 本地仓库(LOcal)与远程仓库(Remote)
+# 1 Git 本地仓库(Local)与远程仓库(Remote)
 ![Git Remote Index WorkSpace](https://img-blog.csdn.net/20171111113251312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)  
 |操作|Git 命令|Note|
 |----|----|----|
-|创建Git仓库|git init||
-|提交文件|git add -m "note"<br>git commit xxx.txt -m "note"|add的文件只会被存放到暂存区，只有commit之后才会被git版本管理|
-|撤销尚未提交的修改|git checkout head aaa.txt bbb.txt<br>git checkout head *.py*<br>git checkout head||
-|查看仓库状态、日志|git status<br>git log<br>gitk<br>gitk aaabranch<br>gitk --all|git status :<br>查看当前仓库有哪些文件增添、修改了还没有被同步;<br>查看当前暂存区是否还有没有未commitd的文件;<br>git log : <br>查看提交的日志<br>gitk 查看指定分支的日志|
+|创建Git仓库|git init|初始为Git仓库，会在根目录建立一个.git文件夹，进行针对文件修改及不同分支的记录|
+|提交文件|git add /img<br>git add xxx.txt|add的文件只会被存放到暂存区|
+|提交文件|git commit /img -m "x"<br>git commit x.py -m "xx"<br>git commit  -m "xxx"|提交给Git仓库|
+|撤销尚未提交的修改|git checkout head a.txt b.txt<br>git checkout head *.py*<br>git checkout head||
+|查看仓库状态、日志|git status<br>git log<br>gitk<br>gitk c_branch<br>gitk --all|git status :<br>查看当前仓库有哪些文件增添、修改了还没有被同步;<br>查看当前暂存区是否还有没有未commitd的文件;<br>git log : <br>查看提交的日志<br>gitk 查看指定分支的日志|
 |关联远程仓库|git remote add <name> <url>|exp:<br>git remote add origin https://github.com/xxxxxx|
-|上传本地仓库至Git服务器|git push||
+|上传本地仓库至Git服务器|git push|默认是上传到origin master分支<br>|
 |忽略文件||在根目录建立一个.gitignore文件，把要忽略的文件直接写入.gitignore中，然后add此文件到版本库并提交|
 |从服务器clone Git项目|git clone|Download .zip :<br>单纯获得了一个工程文件，不支持pull或者push<br>git clone url :<br>git clone会先在当前文件夹建立仓库，再去复制工程，支持git pull或push。<br>如果你想往开源项目上添砖加瓦，使用git clone会好一些。<br>clone会自动关联远程的分支。|
 |从Remote拉取项目更新|git pull|clone是将一个库复制到你的本地，是一个本地从无到有的过程<br>pull是指同步一个在你本地有版本的库内容更新的部分到你的本地库<br>git pull相当于是从远程获取最新版本并merge（合并）到本地<br>git pull = git fetch + git merge|
