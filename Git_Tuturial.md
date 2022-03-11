@@ -2,7 +2,8 @@
 [Git Tuturial Link 1（官方文档）](https://docs.github.com/cn/get-started)    
 [Git Tuturial Link 2（Git特性）](https://www.liaoxuefeng.com/wiki/896043488029600)   
 [Git Func and Command Overview（Cmd 较全）](https://blog.csdn.net/huwh_/article/details/78505565)  
-[MarkDown Edit Helper](https://www.runoob.com/markdown/md-image.html)
+[MarkDown Edit Helper](https://www.runoob.com/markdown/md-image.html)  
+
 **Git：分布式版本管理和控制系统**
 
 *记录文件修改的版本控制系统要解决什么问题？*
