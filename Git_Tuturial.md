@@ -2,7 +2,7 @@
 [Git Tuturial Link 1（官方文档）](https://docs.github.com/cn/get-started)    
 [Git Tuturial Link 2（Git特性）](https://www.liaoxuefeng.com/wiki/896043488029600)   
 [Git Func and Command Overview（Cmd 较全）](https://blog.csdn.net/huwh_/article/details/78505565)  
-
+[MarkDown Edit Helper](https://www.runoob.com/markdown/md-image.html)
 **Git：分布式版本管理和控制系统**
 
 *记录文件修改的版本控制系统要解决什么问题？*
@@ -12,17 +12,22 @@
 >3.多人合作一个项目时，要核对每个人的修改，是否会对其他人造成影响  
 >4.多人同时进行同一项目开发较麻烦
 
-**Git：分布式 版本管理和分支管理系统** 
-特性：
+**Git：分布式 版本管理和分支管理系统**  
+特性：  
 >1. 版本管理和控制：所有文件都被Git管理起来，每个文件的修改、删除，Git都能跟踪，任何时刻都可以追踪、还原历史。
 >2. 多人协作开发：强大的分支管理系统支持分支合并、差异对比
 >3. 支持所有文本编辑文件的版本控制(C、C++、Matlab、Python..)
 ><img src="http://assets.processon.com/chart_image/622a04ad1efad407e98862df.png" width = "1800" height = "400" alt="远程和本地仓库示意图" align=center />  
->
- 
+
 
 # 1 Git 本地仓库(Local)与远程仓库(Remote)
 ![Git Remote Index WorkSpace](https://img-blog.csdn.net/20171111113251312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+
+
+>Remote : 表示服务器或 e304-Gitlab  
+>Repository : 表示本地的 Git 仓库  
+>Index ：表示暂存区  
+>workspace : 表示具体项目文件的工作空间  
 
 |操作|Git 命令 <img width=200>|Note|
 |----|----|----|
@@ -59,14 +64,22 @@ Git每次Commit都是一个版本，可以查看各版本之间的差异，并�
 |标签创建|git tag 1.0<br>git tag  aaa 1.1|可以通过标签检出、创建分支|
 |显示标签列表|git tag||
 |...|||
-# 4.使用示例
+
+# 4.e304-Gitlab使用示例
 ## 4.1 创建本地项目为Git仓库，并上传至e304-Gitlab
 4.1.1 注册帐号
-> *输入e304-Gitlab的网址，注册帐号并等待管理员批准*  
-> *登陆账号，Menu -> Project -> Create new Project -> 复制Clone &lt;http url&gt; *  
+> *（1）输入e304-Gitlab的网址，注册帐号并等待管理员批准*  
+> *（2）登陆账号，Menu -> Project -> Create new Project -> 复制Clone &lt;http url&gt;*  
+> 
+><img src="https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/http.png?raw=true" width = "800" height = "600" alt="远程和本地仓库示意图" align=center /> 
+> *（3）在Repository中将 main branch 从 main 更换为 master*  
+> 
+> ![branch](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/maintomaster.png?raw=true)
+
 
 4.1.2 创建本地项目为Git仓库并上传至e304-Gitlab  
 
+**Ubuntu Cmd Flow：**   
 >$ git init  
 >*#在本地项目文件夹根目录内使用 git init 初始化本地Git仓库*   
 >*#会生成一个.git隐藏文件夹针对文件修改和分支管理的记录* 
@@ -113,7 +126,7 @@ To http://192.168.35.165/Tianyuan.Zhou/e304-tx2_project.git
 ## 4.2 从e304拉取服务器Git项目
 >note：如果是已经clone，只是需要拉取远端的更新，用git pull即可）  
 
->$  git pull origin master 
+>$  git pull origin master *#远端主机默认origin，master表示分支名*
 
 ```python
 output：
@@ -130,6 +143,7 @@ Password for 'http://tianyuan.zhou@192.168.35.165':
 
 ## 4.4 查看本地Git仓库和远程Git仓库的差异（远程Git仓库可能由于他人的提交更新）
 *查看本地仓库与远程仓库的差异*  
+
 **Ubuntu Cmd Flow：**   
 >$ git diff origin/master
 
@@ -157,16 +171,18 @@ Git每次Commit都是一个版本，可以查看各版本之间的差异，并�
 output:
 Git_Tuturial.md  img  modifiedtxt.txt  readme.md  Study
 ```
->$ touch modifiedtxt.txt
+>$ touch modifiedtxt.txt *#在master分支下创建了一个modifiedtxt.txt*
 >$ git add modifiedtxt.txt
 >$ git commit -m "add a test modified txtfile"
->$ git log --pretty=oneline  
+>$ git log --pretty=oneline  *#查看所有的提交日志*
 ```python
 output:
 3f5864ce8074e3f94597fd867d23fa32f766ea17 (HEAD -> master) add a test modified txtfile
 5eef553c62faa7fe26c71e551384fad2ae312090 (origin/master) Init my tx2 project to e304-GitServer
 ```
->git reset --hard 5eef553
+>git reset --hard 5eef553 *#版本回退到没有modifiedtxt.txt的版本*  
+
+*#只需要写日志前几个hash码即可，git tag可以替代hash码，注意此命令会使之后版本消失，可以学习使用 git revert*
 
 ```python
 output:
@@ -177,6 +193,7 @@ HEAD 现在位于 5eef553 Init my tx2 project to e304-GitServer
 ```python
 output:
 Git_Tuturial.md  img  readme.md  Study
+#可见已经恢复到没有modifiedtxt.txt文件的版本
 ```
 >$ git log
 
@@ -186,6 +203,7 @@ Author: tianyuan.zhou@mediatek.com <970199674@qq.com>
 Date:   Fri Mar 11 15:40:23 2022 +0800
 
     Init my tx2 project to e304-GitServer
+#可见提交此版本之后的日志被清除
 ```
 
 ## 4.6 Git分支管理（创建分支、分支比较、分支合并）
@@ -195,20 +213,20 @@ Date:   Fri Mar 11 15:40:23 2022 +0800
 **Ubuntu Cmd Flow：**    
 
 *创建分支*  
->$ touch modifiedtxt.txt
+>$ touch modifiedtxt.txt *#在master分支下建立了一个txt文件*
 >$ ls  
 
 ```python
 output:
 Git_Tuturial.md  img  modifiedtxt.txt  readme.md  Study
 ```
->$ git checkout -b deletetxt  
+>$ git checkout -b deletetxt  *#创建deletetxt分支，-b切换至此分支*
 
 ```python
 output:
 切换到一个新分支 'deletetxt'
 ```
->$ rm modifiedtxt.txt  
+>$ rm modifiedtxt.txt  *#删除deletetxt分支下的txt文件*
 >$ ls  
 
 ```python
@@ -232,7 +250,7 @@ output:
 >git commit -m "del modifiedtxt"  
 
 *分支比较*  
->git diff master  
+>git diff master  *#deletetxt分支与master分支比较*
 
 ```python
 output:
@@ -241,7 +259,7 @@ deleted file mode 100644
 index 19d6416..0000000
 ...
 ```
->$ git checkout master  
+>$ git checkout master  *#切换到master分支*
 
 ```python
 output:
@@ -253,27 +271,29 @@ output:
 ```python
 output:
 Git_Tuturial.md  img  modifiedtxt.txt  readme.md  Study
+#可见master分支下是有这个文件的
 ```
 
 *分支合并*
->$ git checkout deletetxt  
+>$ git checkout deletetxt  *#切换到deletetxt分支*
 >$ touch merge.txt  
 >$ git add merge.txt  
->$ git commit -m "add merge.txt"  
+>$ git commit -m "add merge.txt"  *#在deletetxt分支新增merge.txt文件*
 >$ ls    
 
 ```python
 output:
 Git_Tuturial.md  img  merge.txt  readme.md  Study
 ```
->$ git checkout master
+>$ git checkout master  *#切换到master分支*
 >ls
 
 ```python
 output:  
  Git_Tuturial.md  img  readme.md  Study 
+#可见master分支下是没有merge.txt文件的
 ```
->$ git merge deletetxt
+>$ git merge deletetxt *#将deletetxt分支与master分支 merge*
 
 ```python
 output:
@@ -284,11 +304,12 @@ Fast-forward
  create mode 100644 merge.txt
 
 ```
->$  ls
+>$ ls 
 
 ```python
 output:
 Git_Tuturial.md  img  merge.txt  readme.md  Study
+#master分支下有了delectetxt分支下编辑的merge.txt文件
 ```
 # 5 Git命令（较全）思维导图
 ![Git命令（较全）思维导图](https://img-blog.csdn.net/20171111113313194?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)   
