@@ -67,17 +67,19 @@ Git每次Commit都是一个版本，可以查看各版本之间的差异，并�
 
 # 4.e304-Gitlab使用示例
 ## 4.1 创建本地项目为Git仓库，并上传至e304-Gitlab
-4.1.1 注册帐号
+
+### 4.1.1 注册帐号并在e304-Gitlab新建一个空项目
 > *（1）输入e304-Gitlab的网址，注册帐号并等待管理员批准*  
 > *（2）登陆账号，Menu -> Project -> Create new Project -> 复制Clone &lt;http url&gt;*  
 > 
-><img src="https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/http.png?raw=true" width = "800" height = "600" alt="远程和本地仓库示意图" align=center /> 
+><img src="https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/http.png?raw=true" width = "800" height = "600" alt="远程和本地仓库示意图" align=center />  
+>
 > *（3）在Repository中将 main branch 从 main 更换为 master*  
 > 
 > ![branch](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/maintomaster.png?raw=true)
 
 
-4.1.2 创建本地项目为Git仓库并上传至e304-Gitlab  
+### 4.1.2 创建本地项目为Git仓库并上传至e304-Gitlab  
 
 **Ubuntu Cmd Flow：**   
 >$ git init  
