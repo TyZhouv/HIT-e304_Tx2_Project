@@ -17,10 +17,9 @@
 >1. 版本管理和控制：所有文件都被Git管理起来，每个文件的修改、删除，Git都能跟踪，任何时刻都可以追踪、还原历史。
 >2. 多人协作开发：强大的分支管理系统支持分支合并、差异对比
 >3. 支持所有文本编辑文件的版本控制(C、C++、Matlab、Python..)
-><img src="http://assets.processon.com/chart_image/622a04ad1efad407e98862df.png" width = "1800" height = "400" alt="图片名称" align=center />  
+><img src="http://assets.processon.com/chart_image/622a04ad1efad407e98862df.png" width = "1800" height = "400" alt="远程和本地仓库示意图" align=center />  
 >
  
-
 
 # 1 Git 本地仓库(Local)与远程仓库(Remote)
 ![Git Remote Index WorkSpace](https://img-blog.csdn.net/20171111113251312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
@@ -33,10 +32,10 @@
 |撤销尚未提交的修改|git checkout head a.txt b.txt<br>git checkout head *.py*<br>git checkout head||
 |查看仓库状态|git status<br>|查看当前仓库有哪些文件增添、修改了还没有被同步;<br>查看当前暂存区是否还有没有未commitd的文件;|
 |查看提交日志|git log<br>gitk<br>gitk c_branch<br>gitk --all|git log : 查看提交的日志<br>gitk ：查看指定分支的日志|
-|关联远程仓库|git remote add origin &lt;url&gt; ||
 |上传本地仓库至Git服务器|git push|默认是上传到origin master分支<br>|
 |忽略文件||在根目录建立一个.gitignore文件，把要忽略的文件直接写入.gitignore中，然后add此文件到版本库并提交|
 |从服务器clone Git项目|git clone &lt;url&gt;|Download .zip :<br>单纯获得了一个工程文件，不支持pull或者push<br>git clone &lt;url &gt;:<br>git clone会先在当前文件夹建立仓库，再去复制工程，支持git pull或push。<br>如果你想往开源项目上添砖加瓦，使用git clone会好一些。<br>clone会自动关联远程的分支。|
+|关联远程仓库|git remote add origin &lt;url&gt; ||
 |从服务器拉取项目更新|git pull|clone是将一个库复制到你的本地，是一个本地从无到有的过程<br>pull是指同步一个在你本地有版本的库内容更新的部分到你的本地库<br>git pull相当于是从远程获取最新版本并merge（合并）到本地<br>git pull = git fetch + git merge|
 |...|||
 # 2 Git 版本切换
@@ -44,7 +43,7 @@ Git每次Commit都是一个版本，可以查看各版本之间的差异，并�
 |操作|Git 命令 <img width=300>|Note|
 |----|----|----|
 |查看版本号|git log --pretty=oneline  |--pretty=oneline表示只显示版本号和commit的注释<br>不要此参数会显示详情|
-|项目版本回退及切换|1.git checkout &lt;commit&gt;<br>2.git checkout [&lt;commit&gt;] [--] &lt;filepath&gt;<br>3.git reset --hard &lt;commit&gt; <br>|1.git checkout &lt;commit&gt; 命令把整个git仓库文件回退到 commit 参数指定的版本<br>2.git checkout [&lt;commit&gt;] [--] &lt;filepath&gt;命令只回退 filepath 文件到 commit 参数指定的版本<br>不影响其他文件<br>3.git reset --hard &lt;commit&gt; 命令把git的HEAD指针指向到 commit 对应的版本，<br>本地文件内容也会被回退，之后的版本会消失！ 不可逆！！！|
+|项目版本回退及切换|1.git checkout &lt;commit&gt;<br>2.git checkout [&lt;commit&gt;] [--] &lt;filepath&gt;<br>3.git reset --hard &lt;commit&gt; <br>|1.git checkout &lt;commit&gt; 命令把整个git仓库文件回退到 commit 参数指定的版本<br>2.git checkout [&lt;commit&gt;] [--] &lt;filepath&gt;命令只回退 filepath 文件到 commit 参数指定的版本<br>不影响其他文件<br>**3.git reset --hard &lt;commit&gt; 命令把git的HEAD指针指向到 commit 对应的版本，<br>本地文件内容也会被回退，之后的版本会消失！ 不可逆！！！**|
 |更新之前某个版本内的文件|git revert &lt;commit&gt;|这种方式不会把版本往前回退，而是覆盖之前的版本内容。<br>只需要让别人更新一下代码就可以了|
 |...|||
 
@@ -61,65 +60,237 @@ Git每次Commit都是一个版本，可以查看各版本之间的差异，并�
 |显示标签列表|git tag||
 |...|||
 # 4.使用示例
-## 4.1 创建本地项目为Git仓库，并上传至e304服务器
+## 4.1 创建本地项目为Git仓库，并上传至e304-Gitlab
+4.1.1 注册帐号
+> *输入e304-Gitlab的网址，注册帐号并等待管理员批准*  
+> *登陆账号，Menu -> Project -> Create new Project -> 复制Clone &lt;http url&gt; *  
+
+4.1.2 创建本地项目为Git仓库并上传至e304-Gitlab  
+
+>$ git init  
+>*#在本地项目文件夹根目录内使用 git init 初始化本地Git仓库*   
+>*#会生成一个.git隐藏文件夹针对文件修改和分支管理的记录* 
+
+```python
+output： 
+已初始化空的 Git 仓库于 /home/sluca_tian/aaty_workspace/e304_Git/e304 Tx2_Project/.git/    
+```
+>$ git add Git_Tuturial.md img/ readme.md Study/  *#将本地文件夹中的文件加入到暂存区*  
 
 
+>$ git commit -m "Init my tx2 project to e304-GitServer"  *#提交到Git仓库生成一个版本*  
 
-## 4.2 从e304克隆Git项目
->note：如果是已经clone，只是需要拉取远端的更新，用git pull即可）
+```python
+output:
+[master （根提交） 5eef553] Init my tx2 project to e304-GitServer
+ 30 files changed, 621 insertions(+)
+ create mode 100644 Git_Tuturial.md
+ create mode 100644 Study/Jeston_Hello AI World/Coding Your Own Object Detection Program.md
+ create mode 100644 Study/Jeston_Hello AI World/Collecting my own Detection Datasets.md
+ create mode 100644 Study/Jeston_Hello AI World/Hello AI World_CodeFLow.md
+...
+```
+>$ git remote add origin  &lt;http url&gt   *#关联远程 的仓库*  
+>$ git push --set-upstream origin master  *#提交到远程仓库的master分支上，并关联此分支*
+
+```python
+output：
+Username for 'http://192.168.35.165': Tianyuan.zhou
+Password for 'http://Tianyuan.zhou@192.168.35.165': 
+对象计数中: 38, 完成.
+Delta compression using up to 4 threads.
+压缩对象中: 100% (35/35), 完成.
+写入对象中: 100% (38/38), 1.41 MiB | 2.28 MiB/s, 完成.
+Total 38 (delta 1), reused 0 (delta 0)
+remote: 
+remote: To create a merge request for master, visit:
+remote:   http://192.168.35.165/Tianyuan.Zhou/e304-tx2_project/-/merge_requests/new?merge_request%5Bsource_branch%5D=master
+remote: 
+To http://192.168.35.165/Tianyuan.Zhou/e304-tx2_project.git
+ * [new branch]      master -> master
+分支 'master' 设置为跟踪来自 'origin' 的远程分支 'master'。
+```
+## 4.2 从e304拉取服务器Git项目
+>note：如果是已经clone，只是需要拉取远端的更新，用git pull即可）  
+
+>$  git pull origin master 
+
+```python
+output：
+Username for 'http://192.168.35.165': tianyuan.zhou
+Password for 'http://tianyuan.zhou@192.168.35.165': 
+来自 http://192.168.35.165/Tianyuan.Zhou/e304-tx2_project
+ * branch            master     -> FETCH_HEAD
+已经是最新的。
+
+```
+## 4.2 在本地进行Git项目更新并提交到服务器
+>同4.1 在本地修改、增减文件后add、commit加入本地Git 仓库 ，再使用 git push 上传到e304-Git服务器
 
 
 ## 4.3 查看本地Git仓库和远程Git仓库的差异（远程Git仓库可能由于他人的提交更新）
-**查看本地仓库与远程仓库的差异**
-Ubuntu Cmd Flow：   
->git fetch origin
->git diff --stat master origin/master
+*查看本地仓库与远程仓库的差异*  
+**Ubuntu Cmd Flow：**   
+>$ git diff origin/master
 
 *-- stat命令的功能是统计哪些文件发生了改变，有多少行产生了改动，并不会给出改动的具体内容。*
-output:  
-![gitdiff](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/diffimg.png?raw=true)
+```python
+output:
+diff --git a/add-delbranch-file.txt b/add-delbranch-file.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/modifiedtxt.txt b/modifiedtxt.txt
+deleted file mode 100644
+index 19d6416..0000000
+```
 
-## 4.4 在本地进行Git项目更新并提交到服务器
-## 4.5 Git项目版本切换
+## 4.4Git项目版本切换
 Git每次Commit都是一个版本，可以查看各版本之间的差异，并且切换到任意不同版本。
->要实现的功能：
->新建了一个version_back.txt, add后commit到仓库，形成版本。  
->现在需要回退到没有这个txt文件的版本  
+
+*要实现的功能：*   
 
 **Ubuntu Cmd Flow：**   
 
->git log --pretty=oneline  
+>$ ls
 
+```python
+output:
+Git_Tuturial.md  img  modifiedtxt.txt  readme.md  Study
+```
+>$ touch modifiedtxt.txt
+>$ git add modifiedtxt.txt
+>$ git commit -m "add a test modified txtfile"
+>$ git log --pretty=oneline  
+```python
+output:
+3f5864ce8074e3f94597fd867d23fa32f766ea17 (HEAD -> master) add a test modified txtfile
+5eef553c62faa7fe26c71e551384fad2ae312090 (origin/master) Init my tx2 project to e304-GitServer
+```
+>git reset --hard 5eef553
 
-![git log](https://raw.githubusercontent.com/TyZhouv/HIT-e304_Tx2_Project/master/img/gitlog.png)
->git reset --hard 5eb8  
+```python
+output:
+HEAD 现在位于 5eef553 Init my tx2 project to e304-GitServer
+```
+>$ ls
 
+```python
+output:
+Git_Tuturial.md  img  readme.md  Study
+```
+>$ git log
 
-![backimg](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/backimg.png?raw=true)
+```python
+commit 5eef553c62faa7fe26c71e551384fad2ae312090 (HEAD -> master, origin/master)
+Author: tianyuan.zhou@mediatek.com <970199674@qq.com>
+Date:   Fri Mar 11 15:40:23 2022 +0800
 
-# 4.6 Git分支管理（创建分支、分支比较、分支合并）
->创建并切换到刚创建的分支
->git checkout version2 -b
+    Init my tx2 project to e304-GitServer
+```
 
-![创建并切换到刚创建的分支](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/new%20branch.png?raw=true)
->查看所有分支及当前处于的分支
->git branch -a
+## 4.4 Git分支管理（创建分支、分支比较、分支合并）
 
-![查看当前分支](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/branch%20list.png?raw=true)
->在刚创建的分支 version2 中添加了 version2.txt 和一张图片，并与 master分支比较差异
+*要实现的功能：创建另一个分支deletettxt删除modifiedtxt.txt，切换到原分支本地文件夹中modifiedtxt.txt出现。*  
 
-![分支比较](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/diff_master_version.png?raw=true)
->git checkout master
+**Ubuntu Cmd Flow：**    
 
-切换到master分支会发现，本地文件夹中version2.txt的文件消失了
+*创建分支*  
+>$ touch modifiedtxt.txt
+>$ ls  
 
->git merge version2
+```python
+output:
+Git_Tuturial.md  img  modifiedtxt.txt  readme.md  Study
+```
+>$ git checkout -b deletetxt  
 
-![merge](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/merge.png?raw=true)
-合并master、version2分支，此时会发现处于master分支也有了version2.txt文件
+```python
+output:
+切换到一个新分支 'deletetxt'
+```
+>$ rm modifiedtxt.txt  
+>$ ls  
 
+```python
+output:
+Git_Tuturial.md  img  readme.md  Study
+```
+>$ git status  
 
-**Git命令（较全）思维导图**
+```python
+output:
+位于分支 deletetxt
+尚未暂存以备提交的变更：
+  （使用 "git add/rm <文件>..." 更新要提交的内容）
+  （使用 "git checkout -- <文件>..." 丢弃工作区的改动）
+
+	删除：     modifiedtxt.txt
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+```
+>git add modifiedtxt.txt  
+>git commit -m "del modifiedtxt"  
+
+*分支比较*  
+>git diff master  
+
+```python
+output:
+diff --git a/modifiedtxt.txt b/modifiedtxt.txt
+deleted file mode 100644
+index 19d6416..0000000
+...
+```
+>$ git checkout master  
+
+```python
+output:
+切换到分支 'master'
+您的分支与上游分支 'origin/master' 一致。  
+```
+>$ ls  
+
+```python
+output:
+Git_Tuturial.md  img  modifiedtxt.txt  readme.md  Study
+```
+
+*分支合并*
+>$ git checkout deletetxt  
+>$ touch merge.txt  
+>$ git add merge.txt  
+>$ git commit -m "add merge.txt"  
+>$ ls    
+
+```python
+output:
+Git_Tuturial.md  img  merge.txt  readme.md  Study
+```
+>$ git checkout master
+>ls
+
+```python
+output:  
+ Git_Tuturial.md  img  readme.md  Study 
+```
+>$ git merge deletetxt
+
+```python
+output:
+更新 ab14d24..0a0e340
+Fast-forward
+ merge.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 merge.txt
+
+```
+>$  ls
+
+```python
+output:
+Git_Tuturial.md  img  merge.txt  readme.md  Study
+```
+# 5 Git命令（较全）思维导图
 ![Git命令（较全）思维导图](https://img-blog.csdn.net/20171111113313194?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)   
 	
 	
