@@ -124,11 +124,11 @@ Password for 'http://tianyuan.zhou@192.168.35.165':
 已经是最新的。
 
 ```
-## 4.2 在本地进行Git项目更新并提交到服务器
+## 4.3 在本地进行Git项目更新并提交到服务器
 >同4.1 在本地修改、增减文件后add、commit加入本地Git 仓库 ，再使用 git push 上传到e304-Git服务器
 
 
-## 4.3 查看本地Git仓库和远程Git仓库的差异（远程Git仓库可能由于他人的提交更新）
+## 4.4 查看本地Git仓库和远程Git仓库的差异（远程Git仓库可能由于他人的提交更新）
 *查看本地仓库与远程仓库的差异*  
 **Ubuntu Cmd Flow：**   
 >$ git diff origin/master
@@ -144,7 +144,7 @@ deleted file mode 100644
 index 19d6416..0000000
 ```
 
-## 4.4Git项目版本切换
+## 4.5 Git项目版本切换
 Git每次Commit都是一个版本，可以查看各版本之间的差异，并且切换到任意不同版本。
 
 *要实现的功能：*   
@@ -188,7 +188,7 @@ Date:   Fri Mar 11 15:40:23 2022 +0800
     Init my tx2 project to e304-GitServer
 ```
 
-## 4.4 Git分支管理（创建分支、分支比较、分支合并）
+## 4.6 Git分支管理（创建分支、分支比较、分支合并）
 
 *要实现的功能：创建另一个分支deletettxt删除modifiedtxt.txt，切换到原分支本地文件夹中modifiedtxt.txt出现。*  
 
