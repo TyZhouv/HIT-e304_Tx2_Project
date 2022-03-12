@@ -8,7 +8,7 @@
 
 *记录文件修改的版本控制系统要解决什么问题？*
 >1.怕丢失旧版本文件多处保留副本  
->![flex](https://www.liaoxuefeng.com/files/attachments/918921393733152/0)  
+>![copy.img](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/copy.jpg?raw=true)  
 >2.不知道每个副本各修改了什么内容  
 >3.多人合作一个项目时，要核对每个人的修改，是否会对其他人造成影响  
 >4.多人同时进行同一项目开发较麻烦
@@ -29,7 +29,7 @@
 
 
 # 1 Git 本地仓库(Local)与远程仓库(Remote)
-![Git Remote Index WorkSpace](https://img-blog.csdn.net/20171111113251312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![Git Remote Index WorkSpace](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/flow.png?raw=true) 
 
 
 >Remote : 表示服务器或 e304-Gitlab  
@@ -322,7 +322,7 @@ Git_Tuturial.md  img  merge.txt  readme.md  Study
 #master分支下有了delectetxt分支下编辑的merge.txt文件
 ```
 # 5 Git命令（较全）思维导图
-![Git命令（较全）思维导图](https://img-blog.csdn.net/20171111113313194?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV3aF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)   
+![Git命令（较全）思维导图](https://github.com/TyZhouv/HIT-e304_Tx2_Project/blob/master/img/cmd.png?raw=true)   
 	
 	
 	
